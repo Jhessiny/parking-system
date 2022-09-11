@@ -1,4 +1,4 @@
-export interface CarSpot {
+export interface SpotModel {
   car?: unknown
   id: string
 }
