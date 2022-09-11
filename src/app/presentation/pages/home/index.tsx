@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react'
-import { useQuery } from 'react-query'
-import endpoints from '../../endpoints/endpoits'
+import { useEffect } from 'react'
+import { useLoadSpotsList } from '~/app/presentation/hooks'
 
 const Home = () => {
-  const { loadSpotsList } = endpoints
-  const { data, refetch } = useQuery('spots', loadSpotsList.load.bind(loadSpotsList), {
-    enabled: false,
-    retry: false,
-  })
+  const { data, loadSpotsListQuery } = useLoadSpotsList()
 
-  const handleClick = async () => {
-    await refetch()
+  const handleClick = async (id: string) => {
+    await loadSpotsListQuery()
   }
 
   useEffect(() => {
-    console.log(data)
+    console.log(data?.value)
   }, [data])
 
   return (
     <div>
-      <button onClick={handleClick}>click</button>
+      <button onClick={async () => await handleClick('123')}>click</button>
     </div>
   )
 }
