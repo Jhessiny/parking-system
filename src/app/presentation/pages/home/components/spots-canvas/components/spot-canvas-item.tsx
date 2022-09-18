@@ -1,7 +1,16 @@
 import { useCallback } from 'react'
 import { Rect, Text, Image } from 'react-konva'
 import { KonvaEventObject } from 'konva/lib/Node'
-import { PADDING } from '../../constants'
+import {
+  carImage,
+  IMAGE_HEIGHT,
+  IMAGE_WIDTH,
+  PADDING,
+  SPOT_HEIGHT,
+  SPOT_WIDTH,
+  TEXT_HEIGHT,
+  TEXT_WIDTH,
+} from '~/app/presentation/pages/home/constants'
 
 interface Props {
   id: string
@@ -12,32 +21,21 @@ interface Props {
 }
 
 function SpotCanvasItem({ id, occupied, car, x, index }: Props) {
-  const getRectY = (index: number) => 50 * (index + 1) + PADDING * index
+  const getRectY = (index: number) => SPOT_HEIGHT * (index + 1) + PADDING * index
 
-  const getTextX = (rectX: number) => {
-    const textWidth = 23.34
-    return rectX + 100 / 2 - textWidth / 2
-  }
-  const getTextY = (rectY: number) => {
-    const textHeight = 12
-    return rectY + 50 / 2 - textHeight / 2
-  }
+  const getTextX = useCallback((rectX: number) => {
+    return rectX + SPOT_WIDTH / 2 - TEXT_WIDTH / 2
+  }, [])
+
+  const getTextY = useCallback((rectY: number) => {
+    return rectY + SPOT_HEIGHT / 2 - TEXT_HEIGHT / 2
+  }, [])
 
   const getImageX = (rectX: number) => {
-    const imageWidth = 90
-    return rectX + 100 / 2 - imageWidth / 2
+    return rectX + SPOT_WIDTH / 2 - IMAGE_WIDTH / 2
   }
   const getImageY = (rectY: number) => {
-    const imageHeight = 45
-    return rectY + 50 / 2 - imageHeight / 2
-  }
-
-  const carImage = () => {
-    const image = new window.Image()
-    image.src = '/src/assets/car.png'
-    image.width = 90
-    image.height = 45
-    return image
+    return rectY + SPOT_HEIGHT / 2 - IMAGE_HEIGHT / 2
   }
 
   const handleClick = (occupied: boolean, id: string) => {
@@ -48,13 +46,13 @@ function SpotCanvasItem({ id, occupied, car, x, index }: Props) {
   }
 
   const handleMouseOver = useCallback((event: KonvaEventObject<MouseEvent>) => {
-    const container = event.target.getStage()?.container()
-    if (container) container.style.cursor = 'pointer'
+    const container = event.target.getStage()!.container()
+    container.style.cursor = 'pointer'
   }, [])
 
   const handleMouseLeave = useCallback((event: KonvaEventObject<MouseEvent>) => {
-    const container = event.target.getStage()?.container()
-    if (container) container.style.cursor = 'default'
+    const container = event.target.getStage()!.container()
+    container.style.cursor = 'default'
   }, [])
   return (
     <>
@@ -63,8 +61,8 @@ function SpotCanvasItem({ id, occupied, car, x, index }: Props) {
         x={x}
         y={getRectY(index)}
         fill={'#20067425'}
-        width={100}
-        height={50}
+        width={SPOT_WIDTH}
+        height={SPOT_HEIGHT}
         stroke={'#20067452'}
         onClick={() => handleClick(occupied, id)}
         onMouseOver={handleMouseOver}
