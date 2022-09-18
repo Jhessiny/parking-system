@@ -1,4 +1,4 @@
-import Home from '~/app/presentation/pages/home'
+import Home from '~/app/presentation/pages/home/home'
 
 export const appRoutes = [
   {

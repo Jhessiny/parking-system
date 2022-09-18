@@ -8,4 +8,7 @@ dist
 *.json
 webpack.*.ts
 *.svg
+*.png
+*.jpg
 *.css
+*.scss

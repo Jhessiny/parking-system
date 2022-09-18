@@ -3,14 +3,19 @@ import endpoints from '~/app/presentation/endpoints/endpoits'
 
 export const useLoadSpotsList = () => {
   const { loadSpotsList } = endpoints
-  const { data, isLoading, refetch } = useQuery('spots', loadSpotsList.load.bind(loadSpotsList), {
-    enabled: false,
-    retry: false,
-  })
+  const { data, isLoading, isError, refetch } = useQuery(
+    'spots',
+    loadSpotsList.load.bind(loadSpotsList),
+    {
+      enabled: false,
+      retry: false,
+    },
+  )
 
   return {
     loadSpotsListQuery: refetch,
     isLoading,
     data,
+    isError,
   }
 }
