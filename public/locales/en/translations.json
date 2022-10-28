@@ -1,0 +1,18 @@
+{
+  "common": {},
+  "actions": {},
+  "errors": {
+    "minLength": "Must have {{length}} characters or more.",
+    "maxLength": "Must have {{length}} characters or less.",
+    "invalidEmail": "Invalid email format.",
+    "requiredField": "Required field.",
+    "mismatchField": "Fields must match.",
+    "accessDenied": "You are not allow to access this content.",
+    "invalidCredentials": "Invalid credentials.",
+    "too weak": "Invalid password.",
+    "unexpectedError": "An unexpected error has occurred, please try again in a few moments.",
+    "passwordStrength": "Password must contain uppercase, lowercase letters, number and special character.",
+    "invalidPhoneNumber": "Invalid phone number.",
+    "invalidURL": "Invalid URL."
+  }
+}

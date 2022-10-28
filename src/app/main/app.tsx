@@ -1,5 +1,6 @@
 import { QueryClientProvider, QueryClient } from 'react-query'
 import { Router } from './router/router'
+import './app.scss'
 
 const App = () => {
   const queryClient = new QueryClient()
